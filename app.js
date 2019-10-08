@@ -59,7 +59,10 @@ _db
 		const server = app.listen(8080);
 		const io = require('./socket').init(server);
 		io.on('connection', socket => {
-			console.log('Client connected');
+      console.log('Client connected');
+      socket.on('disconnect', () => {
+        console.log('Client got disconnected')
+      });
 		});
 	})
 	.catch(err => console.log('err :', err));
